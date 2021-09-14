@@ -1,0 +1,56 @@
+version: '3.7'
+
+volumes:
+  post_db:
+
+networks:
+  back_net:
+    name: back_net
+    ipam:
+      config:
+        - subnet: 10.0.2.0/24
+  front_net:
+    name: front_net
+    ipam:
+      config:
+        - subnet: 10.0.1.0/24
+
+
+services:
+  post_db:
+    image: mongo:3.2
+    volumes:
+      - post_db:/data/db
+    networks:
+      - back_net
+
+  ui:
+    build: ./ui
+    image: ${USERNAME}/ui:1.0
+    env_file: .env
+    volumes:
+      - /home/yc-user/ui_app.rb:/app/ui_app.rb
+    ports:
+      - ${PORT}:9292/tcp
+    networks:
+      - front_net
+
+  post:
+    build: ./post-py
+    image: ${USERNAME}/post:1.0
+    env_file: .env
+    volumes:
+      - /home/yc-user/post_app.py:/app/post_app.py
+    networks:
+      - back_net
+      - front_net
+
+  comment:
+    build: ./comment
+    image: ${USERNAME}/comment:1.0
+    env_file: .env
+    volumes:
+      - /home/yc-user/comment_app.rb:/app/comment_app.rb
+    networks:
+      - back_net
+      - front_net
