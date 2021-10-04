@@ -16,7 +16,7 @@ networks:
 
 
 services:
-  post_db:
+  postdb:
     image: mongo:3.2
     volumes:
       - post_db:/data/db
@@ -76,13 +76,12 @@ services:
   mongodb-exporter:
     image: bitnami/mongodb-exporter:latest
     command:
-      - '--mongodb.uri=mongodb://post_db:27017'
+      - '--mongodb.uri=mongodb://postdb:27017'
     networks:
       - back_net
 
-  cloudprober:
-    image: leon4eg/cloudprober:latest
+  blackbox-exporter:
+    image: docker.io/bitnami/blackbox-exporter:latest
     networks:
       - back_net
-    ports:
-      - '9313:9313'
+      - front_net
