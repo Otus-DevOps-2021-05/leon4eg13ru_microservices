@@ -33,7 +33,7 @@ leon4eg13ru microservices repository
 - настроен сбор метрик с использованием mongodb-exporter, node-exporter, cloudprober
 - собранные образы доступны по ссылке https://hub.docker.com/u/leon4eg
 
-## HW_17
+## HW_18
 
  - настроено логгирование docker-контейнеров
  - запущен и настроен стек для сборки логов ElasticSearch/Fluentd/Kibana
