@@ -54,5 +54,8 @@ node-02   Ready    worker                        31m   v1.22.2
 
  - проверен деплой созданых манифестов
 
-NAME                              READY   STATUS    RESTARTS   AGE
-post-deployment-799c77ffb-46nmc   1/1     Running   0          9m52s
+NAME                                  READY   STATUS    RESTARTS   AGE
+comment-deployment-6fd5474494-dqxd7   1/1     Running   0          49s
+mongo-deployment-545fd54f7c-m49g4     1/1     Running   0          2m21s
+post-deployment-799c77ffb-46nmc       1/1     Running   0          24m
+ui-deployment-7998b8c4c6-kp4gf        1/1     Running   0          4m44s
