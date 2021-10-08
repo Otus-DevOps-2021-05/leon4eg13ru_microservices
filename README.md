@@ -39,3 +39,23 @@ leon4eg13ru microservices repository
  - запущен и настроен стек для сборки логов ElasticSearch/Fluentd/Kibana
  - Fluentd настроен для сборки структурированных и неструктурированных логов
  - подключен распределенный трейсинг приложения с помощью Zipkin
+
+## HW_19
+
+ - запущен и настроен Kubernetes средствами kubeadm
+
+ kubeadm init --pod-network-cidr=10.244.0.0/16 --control-plane-endpoint=node-01.ru-central1.internal --apiserver-advertise-address=10.10.0.19
+
+ - настроена сеть между нодами и мастером с помощью сетевого плагина calico
+
+ NAME      STATUS   ROLES                         AGE   VERSION
+node-01   Ready    control-plane,master,worker   34m   v1.22.2
+node-02   Ready    worker                        31m   v1.22.2
+
+ - проверен деплой созданых манифестов
+
+NAME                                  READY   STATUS    RESTARTS   AGE
+comment-deployment-6fd5474494-dqxd7   1/1     Running   0          49s
+mongo-deployment-545fd54f7c-m49g4     1/1     Running   0          2m21s
+post-deployment-799c77ffb-46nmc       1/1     Running   0          24m
+ui-deployment-7998b8c4c6-kp4gf        1/1     Running   0          4m44s
